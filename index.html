@@ -3,236 +3,316 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>교수 프로필 | 한빛대학교</title>
+  <title>김하늘 교수 | 동의대학교 (강의용 예시)</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Inter & Noto Sans KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            brand: {
-              50: '#f0f4f9',
-              100: '#dbe4f0',
-              200: '#bccde2',
-              600: '#1e3a8a',
-              700: '#1d3557',
-              800: '#172554',
-              900: '#0f172a',
-            }
-          },
           fontFamily: {
-            sans: ['Pretendard', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            sans: ['"Noto Sans KR"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50: '#f0f4f9',
+              100: '#dde6f2',
+              200: '#c0d2e7',
+              300: '#94b5d6',
+              400: '#6293c1',
+              500: '#3f76aa',
+              600: '#2f5c8b',
+              700: '#1e3a8a', /* Main Primary Navy */
+              800: '#172554',
+              900: '#0f172a', /* Midnight Slate */
+            }
           }
         }
       }
     }
   </script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed">
 
-  <!-- Header / Navigation -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-navy-700 selection:text-white">
+  <div style="background:#fff7ed;color:#9a3412;text-align:center;font-size:13px;padding:6px 12px;">강의 실습용 예시 페이지입니다 (가상 인물 · 가상 연락처)</div>
+
+  <!-- 상단 네비게이션 바 -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" class="font-bold text-lg text-brand-700 tracking-tight flex items-center gap-2">
-        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-        <span>한빛대학교 교육공학과</span>
+      <a href="#" class="text-lg font-bold tracking-tight text-navy-800 flex items-center gap-2">
+        <i class="fa-solid fa-graduation-cap text-navy-600"></i>
+        <span>김하늘 연구실 <span class="text-xs font-normal text-slate-500 hidden sm:inline">| 동의대학교</span></span>
       </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-        <a href="#about" class="hover:text-brand-600 transition-colors">소개</a>
-        <a href="#research" class="hover:text-brand-600 transition-colors">연구 분야</a>
-        <a href="#courses" class="hover:text-brand-600 transition-colors">담당 강의</a>
-        <a href="#experience" class="hover:text-brand-600 transition-colors">주요 경력</a>
-        <a href="#contact" class="hover:text-brand-600 transition-colors">연락처</a>
+
+      <!-- 데스크톱 메뉴 -->
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-navy-700 transition-colors">소개</a>
+        <a href="#research" class="hover:text-navy-700 transition-colors">연구 분야</a>
+        <a href="#courses" class="hover:text-navy-700 transition-colors">담당 강의</a>
+        <a href="#career" class="hover:text-navy-700 transition-colors">주요 경력</a>
+        <a href="#contact" class="hover:text-navy-700 transition-colors">연락처</a>
       </nav>
-      <a href="#contact" class="text-xs sm:text-sm bg-brand-700 hover:bg-brand-800 text-white font-medium px-4 py-2 rounded-lg transition-all shadow-sm">
-        문의하기
-      </a>
+
+      <!-- 모바일 메뉴 버튼 -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-navy-800 hover:bg-slate-100 focus:outline-none" aria-label="메뉴 열기">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+      <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-800">소개</a>
+      <a href="#research" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-800">연구 분야</a>
+      <a href="#courses" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-800">담당 강의</a>
+      <a href="#career" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-800">주요 경력</a>
+      <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-navy-800">연락처</a>
     </div>
   </header>
 
-  <!-- Hero Section (Profile Header) -->
-  <section class="bg-gradient-to-b from-brand-50 to-slate-50 border-b border-slate-200 py-12 sm:py-16">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 text-center sm:text-left">
-        <!-- Profile Image with Initial Circle -->
-        <div class="relative flex-shrink-0">
-          <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full ring-4 ring-white shadow-xl bg-brand-700 flex items-center justify-center select-none">
-            <span class="text-white text-5xl sm:text-6xl font-bold tracking-tight">김</span>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+    <!-- HERO 섹션: 프로필 사진, 이름, 직함, 한 줄 소개 -->
+    <section class="bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+      <!-- 배경 장식용 패턴 -->
+      <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -left-12 -top-12 w-48 h-48 bg-navy-400/10 rounded-full blur-xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
+        <!-- 원형 프로필 이미지 자리 -->
+        <div class="relative group shrink-0">
+          <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-navy-800/80 ring-4 ring-navy-600/30">
+            <!-- 기본 플레이스홀더 이미지 (원하는 사진 링크로 교체 가능) -->
+            <img 
+              src="https://placehold.co/400x400/1e293b/ffffff?text=Professor+Photo" 
+              alt="교수 프로필 사진" 
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              onerror="this.src='https://placehold.co/400x400/1e3a8a/ffffff?text=Photo';"
+            >
           </div>
-          <span class="absolute bottom-2 right-2 p-1.5 bg-brand-600 text-white rounded-full shadow-md">
-            <i data-lucide="check" class="w-4 h-4"></i>
-          </span>
+          <div class="absolute bottom-2 right-2 bg-emerald-500 text-white p-2 rounded-full border-2 border-navy-900 shadow" title="연구실 재실 중 / 문의 가능">
+            <span class="sr-only">상태</span>
+            <div class="w-3 h-3 bg-white rounded-full animate-ping absolute top-2 right-2 opacity-75"></div>
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
         </div>
 
-        <!-- Name, Title, and One-liner -->
-        <div class="flex-1 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-wide uppercase">
-            <span>Faculty Member</span>
+        <!-- 텍스트 정보 -->
+        <div class="text-center md:text-left space-y-3 flex-1">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur text-xs sm:text-sm font-medium tracking-wide text-navy-100 border border-white/10">
+            <span>동의대학교 컴퓨터공학과</span>
+            <span class="inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>지능형시스템연구실 (ISLab)</span>
           </div>
+          
           <div class="space-y-1">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              김하늘 <span class="text-xl sm:text-2xl font-medium text-slate-600">교수</span>
-            </h1>
-            <p class="text-base sm:text-lg font-medium text-brand-700">
-              한빛대학교 사범대학 교육공학과
-            </p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">김하늘 <span class="text-xl sm:text-2xl font-light text-slate-300">Kim Ha-neul, Ph.D.</span></h1>
+            <p class="text-lg sm:text-xl font-medium text-navy-200">교수</p>
           </div>
-          <p class="text-slate-600 text-base max-w-2xl pt-1">
-            "데이터 기반 학습 분석과 인공지능 교수설계를 통해 미래 지향적 맞춤형 교육 환경을 연구하고 구현합니다."
+
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed pt-2 max-w-2xl font-light">
+            “인간 중심의 인공지능 기술로 더 안전하고 편리한 미래 사회를 설계합니다.”
           </p>
 
-          <div class="pt-2 flex flex-wrap justify-center sm:justify-start gap-3">
-            <span class="inline-flex items-center gap-1.5 text-xs text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-sm">
-              <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-600"></i>
-              hnkim@hanbit.ac.kr
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-xs text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-sm">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-600"></i>
-              교육관 502호
-            </span>
+          <!-- 빠른 액션 버튼 -->
+          <div class="pt-4 flex flex-wrap gap-3 justify-center md:justify-start">
+            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-navy-900 font-semibold text-sm rounded-xl hover:bg-slate-100 transition shadow-sm">
+              <i class="fa-regular fa-envelope"></i>
+              <span>면담 및 연구 문의</span>
+            </a>
+            <a href="#career" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-800/80 text-white font-medium text-sm rounded-xl hover:bg-navy-800 border border-white/20 transition">
+              <i class="fa-solid fa-file-lines"></i>
+              <span>주요 약력 보기</span>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content Body -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-
-    <!-- Section 1: 교수 소개 -->
-    <section id="about" class="scroll-mt-20">
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-3">
-        <div class="p-2 bg-brand-50 text-brand-700 rounded-lg">
-          <i data-lucide="user" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">교수 소개</h2>
-      </div>
-      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-4 text-slate-700 leading-relaxed">
-        <p>
-          안녕하세요. 한빛대학교 교육공학과에서 테크놀로지 기반 교육혁신을 연구하는 김하늘입니다. 
-          디지털 전환 시대에 걸맞은 효과적인 학습자 경험(Learning Experience)을 설계하고, 학습 분석(Learning Analytics)과 인공지능(AI)을 결합하여 개별 맞춤형 피드백을 제공하는 방법론을 중점적으로 탐구하고 있습니다.
-        </p>
-        <p>
-          이론에 머무르지 않고 실제 초·중·고 및 고등교육 현장에 적용할 수 있는 실천적 솔루션을 지향하며, 미래 세대가 능동적이고 자발적인 학습 주체로 성장할 수 있도록 돕는 교육 공학적 기반을 구축하는 데 헌신하고 있습니다.
-        </p>
       </div>
     </section>
 
-    <!-- Section 2: 주요 연구 분야 (카드 3개) -->
-    <section id="research" class="scroll-mt-20">
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-3">
-        <div class="p-2 bg-brand-50 text-brand-700 rounded-lg">
-          <i data-lucide="book-open" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">연구 분야</h2>
+    <!-- 소개 (About) 섹션 -->
+    <section id="about" class="bg-white rounded-2xl p-6 sm:p-10 border border-slate-200/80 shadow-sm">
+      <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+          <span class="w-2 h-7 bg-navy-700 rounded-full inline-block"></span>
+          교수 소개
+        </h2>
+        <span class="text-xs text-slate-400 font-mono tracking-wider">ABOUT PROFESSOR</span>
+      </div>
+
+      <div class="space-y-4 text-slate-700 leading-relaxed text-base sm:text-lg">
+        <p>
+          안녕하십니까. 동의대학교 공과대학 컴퓨터공학과 지능형시스템연구실(ISLab)을 이끌고 있는 김하늘 교수입니다.
+        </p>
+        <p>
+          주요 연구 관심사는 <strong>설명 가능한 인공지능(XAI)</strong>, <strong>컴퓨터 비전</strong>, 그리고 <strong>멀티모달 딥러닝 시스템</strong>입니다. 학부 및 대학원 과정에서 학생들이 탄탄한 기초 이론뿐만 아니라 실제 산업 현장의 난제를 해결할 수 있는 실용적 문제 해결 역량을 갖출 수 있도록 지도하고 있습니다.
+        </p>
+        <p>
+          현재 국내외 유수 IT 기업 및 국책 연구기관과의 공동 과제를 활발히 수행 중이며, 학부 연구생 및 석·박사 통합과정 대학원생의 연구실 합류를 언제든 환영합니다.
+        </p>
+      </div>
+
+      <!-- 핵심 키워드 배지 -->
+      <div class="mt-6 pt-6 border-t border-slate-100 flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium rounded-lg">#머신러닝</span>
+        <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium rounded-lg">#설명가능AI</span>
+        <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium rounded-lg">#컴퓨터비전</span>
+        <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium rounded-lg">#신뢰성AI</span>
+        <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium rounded-lg">#산학협력</span>
+      </div>
+    </section>
+
+    <!-- 연구 분야 (Research) 섹션: 카드 3개 -->
+    <section id="research" class="space-y-6">
+      <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+          <span class="w-2 h-7 bg-navy-700 rounded-full inline-block"></span>
+          연구 분야
+        </h2>
+        <span class="text-xs text-slate-400 font-mono tracking-wider">RESEARCH AREAS</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Card 1 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-brand-200 transition-all flex flex-col justify-between">
+        <!-- 카드 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-navy-400 transition flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center mb-4">
-              <i data-lucide="cpu" class="w-6 h-6"></i>
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-700 group-hover:text-white transition">
+              <i class="fa-solid fa-brain"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">AI 기반 맞춤형 학습</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              생성형 AI 및 적응형 학습 알고리즘을 활용하여 학생 개개인의 인지 수준과 학습 성향에 적합한 개별화 교육 설계를 연구합니다.
+            <h3 class="text-lg font-bold text-navy-900 mb-2">설명 가능한 인공지능 (XAI)</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              딥러닝 모델의 복잡한 블랙박스 추론 과정을 시각화하고 해석 가능한 논리로 재구성하여 의료, 금융 등 고신뢰 분야의 안전한 적용을 연구합니다.
             </p>
           </div>
-          <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-1.5 text-xs text-brand-700 font-medium">
-            <span class="bg-slate-100 px-2 py-1 rounded">Adaptive Learning</span>
-            <span class="bg-slate-100 px-2 py-1 rounded">AI Tutor</span>
+          <div class="pt-4 border-t border-slate-100 text-xs text-navy-600 font-semibold flex items-center gap-1">
+            <span>Model Interpretability</span>
+            <i class="fa-solid fa-arrow-right text-[10px] ml-auto"></i>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-brand-200 transition-all flex flex-col justify-between">
+        <!-- 카드 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-navy-400 transition flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center mb-4">
-              <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-700 group-hover:text-white transition">
+              <i class="fa-solid fa-eye"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">학습 분석 및 데이터 마이닝</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              온·오프라인 수업에서 발생하는 다차원 학습 행동 로그를 수집·분석하여 학업 중도 탈락 예측 및 조기 피드백 모델을 구축합니다.
+            <h3 class="text-lg font-bold text-navy-900 mb-2">지능형 컴퓨터 비전</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              실시간 객체 인식, 다중 센서 융합 3D 비전 및 자율주행 차량을 위한 이상 상황 예측 알고리즘을 개발하고 경량화 연구를 수행합니다.
             </p>
           </div>
-          <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-1.5 text-xs text-brand-700 font-medium">
-            <span class="bg-slate-100 px-2 py-1 rounded">Learning Analytics</span>
-            <span class="bg-slate-100 px-2 py-1 rounded">EDM</span>
+          <div class="pt-4 border-t border-slate-100 text-xs text-navy-600 font-semibold flex items-center gap-1">
+            <span>Vision & Edge Computing</span>
+            <i class="fa-solid fa-arrow-right text-[10px] ml-auto"></i>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-brand-200 transition-all flex flex-col justify-between">
+        <!-- 카드 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-navy-400 transition flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center mb-4">
-              <i data-lucide="layers" class="w-6 h-6"></i>
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-700 group-hover:text-white transition">
+              <i class="fa-solid fa-network-wired"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">에듀테크 교수설계 모델</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              XR(VR/AR), 메타버스 등 신기술 환경에 최적화된 새로운 상호작용 및 실재감 증진 교수-학습 설계 전략을 개발합니다.
+            <h3 class="text-lg font-bold text-navy-900 mb-2">멀티모달 딥러닝 시스템</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              언어와 시각 정보, 센서 데이터를 결합하여 보다 폭넓은 맥락을 이해하고 인간과 상호작용할 수 있는 대규모 파운데이션 모델 구조를 설계합니다.
             </p>
           </div>
-          <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-1.5 text-xs text-brand-700 font-medium">
-            <span class="bg-slate-100 px-2 py-1 rounded">Instructional Design</span>
-            <span class="bg-slate-100 px-2 py-1 rounded">EdTech UX</span>
+          <div class="pt-4 border-t border-slate-100 text-xs text-navy-600 font-semibold flex items-center gap-1">
+            <span>Multimodal Foundation Models</span>
+            <i class="fa-solid fa-arrow-right text-[10px] ml-auto"></i>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: 담당 강의 (표) -->
-    <section id="courses" class="scroll-mt-20">
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-3">
-        <div class="p-2 bg-brand-50 text-brand-700 rounded-lg">
-          <i data-lucide="calendar" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">담당 강의</h2>
+    <!-- 담당 강의 (Courses) 섹션: 표 -->
+    <section id="courses" class="space-y-6">
+      <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+          <span class="w-2 h-7 bg-navy-700 rounded-full inline-block"></span>
+          담당 강의
+        </h2>
+        <span class="text-xs text-slate-400 font-mono tracking-wider">COURSES OFFERED</span>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+        <!-- 반응형 가로 스크롤 컨테이너 -->
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm text-slate-600">
-            <thead class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase text-slate-700">
-              <tr>
-                <th scope="col" class="px-6 py-4">학기</th>
-                <th scope="col" class="px-6 py-4">구분</th>
-                <th scope="col" class="px-6 py-4">교과목명</th>
-                <th scope="col" class="px-6 py-4">대상</th>
-                <th scope="col" class="px-6 py-4">강의 시간</th>
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-100/80 text-navy-900 border-b border-slate-200 text-xs uppercase font-semibold tracking-wider">
+                <th scope="col" class="py-4 px-6">학기</th>
+                <th scope="col" class="py-4 px-6">교과목명</th>
+                <th scope="col" class="py-4 px-6">대상</th>
+                <th scope="col" class="py-4 px-6">이수구분</th>
+                <th scope="col" class="py-4 px-6">강의실 / 비고</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100">
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 font-semibold text-slate-900">1학기</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs font-medium">전공필수</span></td>
-                <td class="px-6 py-4 font-medium text-slate-900">교육방법 및 교육공학</td>
-                <td class="px-6 py-4">학부 2학년</td>
-                <td class="px-6 py-4 text-slate-500">화 10:00 - 12:00</td>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50/80 transition-colors">
+                <td class="py-4 px-6 font-medium text-navy-900 whitespace-nowrap">2026-1학기</td>
+                <td class="py-4 px-6 font-semibold text-slate-900 whitespace-nowrap">
+                  인공지능 개론
+                  <span class="block text-xs font-normal text-slate-500">Introduction to AI</span>
+                </td>
+                <td class="py-4 px-6 whitespace-nowrap">학부 2학년</td>
+                <td class="py-4 px-6 whitespace-nowrap"><span class="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs font-semibold">전공필수</span></td>
+                <td class="py-4 px-6 text-slate-500 whitespace-nowrap">공학관 301호 (화/목 10:30)</td>
               </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 font-semibold text-slate-900">1학기</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">전공선택</span></td>
-                <td class="px-6 py-4 font-medium text-slate-900">인공지능과 미래교육 설계</td>
-                <td class="px-6 py-4">학부 3, 4학년</td>
-                <td class="px-6 py-4 text-slate-500">목 14:00 - 17:00</td>
+              <tr class="hover:bg-slate-50/80 transition-colors">
+                <td class="py-4 px-6 font-medium text-navy-900 whitespace-nowrap">2026-1학기</td>
+                <td class="py-4 px-6 font-semibold text-slate-900 whitespace-nowrap">
+                  고급 머신러닝 특론
+                  <span class="block text-xs font-normal text-slate-500">Advanced Machine Learning</span>
+                </td>
+                <td class="py-4 px-6 whitespace-nowrap">대학원 석·박사</td>
+                <td class="py-4 px-6 whitespace-nowrap"><span class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 text-xs font-semibold">전공선택</span></td>
+                <td class="py-4 px-6 text-slate-500 whitespace-nowrap">IT연구관 502호 (수 14:00)</td>
               </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 font-semibold text-slate-900">2학기</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">전공선택</span></td>
-                <td class="px-6 py-4 font-medium text-slate-900">디지털 학습 플랫폼과 UX</td>
-                <td class="px-6 py-4">학부 3학년</td>
-                <td class="px-6 py-4 text-slate-500">수 13:00 - 16:00</td>
+              <tr class="hover:bg-slate-50/80 transition-colors">
+                <td class="py-4 px-6 font-medium text-navy-900 whitespace-nowrap">2026-2학기 (예정)</td>
+                <td class="py-4 px-6 font-semibold text-slate-900 whitespace-nowrap">
+                  컴퓨터 비전 및 패턴인식
+                  <span class="block text-xs font-normal text-slate-500">Computer Vision & Pattern Recognition</span>
+                </td>
+                <td class="py-4 px-6 whitespace-nowrap">학부 3, 4학년</td>
+                <td class="py-4 px-6 whitespace-nowrap"><span class="px-2 py-1 rounded bg-slate-100 text-slate-700 text-xs font-semibold">전공선택</span></td>
+                <td class="py-4 px-6 text-slate-500 whitespace-nowrap">공학관 204호</td>
               </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 font-semibold text-slate-900">2학기</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 text-xs font-medium">대학원</span></td>
-                <td class="px-6 py-4 font-medium text-slate-900">교육 데이터 마이닝 세미나</td>
-                <td class="px-6 py-4">석·박사과정</td>
-                <td class="px-6 py-4 text-slate-500">금 18:30 - 21:30</td>
+              <tr class="hover:bg-slate-50/80 transition-colors">
+                <td class="py-4 px-6 font-medium text-navy-900 whitespace-nowrap">2026-2학기 (예정)</td>
+                <td class="py-4 px-6 font-semibold text-slate-900 whitespace-nowrap">
+                  캡스톤 디자인 산학프로젝트
+                  <span class="block text-xs font-normal text-slate-500">Capstone Design Project</span>
+                </td>
+                <td class="py-4 px-6 whitespace-nowrap">학부 4학년</td>
+                <td class="py-4 px-6 whitespace-nowrap"><span class="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs font-semibold">전공필수</span></td>
+                <td class="py-4 px-6 text-slate-500 whitespace-nowrap">팀별 실습실 배정</td>
               </tr>
             </tbody>
           </table>
@@ -240,193 +320,204 @@
       </div>
     </section>
 
-    <!-- Section 4: 주요 경력 (타임라인) -->
-    <section id="experience" class="scroll-mt-20">
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-3">
-        <div class="p-2 bg-brand-50 text-brand-700 rounded-lg">
-          <i data-lucide="briefcase" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">주요 경력 및 학력</h2>
+    <!-- 주요 경력 (Career) 섹션: 타임라인 -->
+    <section id="career" class="space-y-6">
+      <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+          <span class="w-2 h-7 bg-navy-700 rounded-full inline-block"></span>
+          주요 경력 및 학력
+        </h2>
+        <span class="text-xs text-slate-400 font-mono tracking-wider">CAREER & EDUCATION</span>
       </div>
 
-      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
-        <div class="relative pl-6 sm:pl-8 border-l-2 border-brand-200 space-y-8">
+      <div class="bg-white rounded-2xl p-6 sm:p-10 border border-slate-200/80 shadow-sm">
+        <div class="relative border-l-2 border-navy-200 ml-3 sm:ml-4 space-y-8 pb-2">
           
-          <!-- Timeline Item 1 -->
-          <div class="relative group">
-            <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-brand-700 ring-4 ring-white shadow"></span>
-            <div>
-              <span class="text-xs font-semibold tracking-wider text-brand-700 uppercase">2020.03 - 현재</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">한빛대학교 사범대학 교육공학과 부교수 / 조교수</h3>
-              <p class="text-sm text-slate-600 mt-1">
-                교육공학 학부 및 대학원 강의, AI 융합교육 연구센터장 역임
-              </p>
+          <!-- 항목 1 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-navy-700 group-hover:scale-125 transition-transform"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">동의대학교 공과대학 컴퓨터공학과 교수</h3>
+              <span class="text-xs sm:text-sm font-semibold text-navy-600 bg-navy-50 px-2.5 py-0.5 rounded-full inline-block w-fit mt-1 sm:mt-0">2018.03 - 현재</span>
             </div>
+            <p class="text-slate-600 text-sm">지능형시스템연구실 주임교수</p>
           </div>
 
-          <!-- Timeline Item 2 -->
-          <div class="relative group">
-            <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-white shadow"></span>
-            <div>
-              <span class="text-xs font-semibold tracking-wider text-brand-700 uppercase">2017.09 - 2020.02</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">한국교육학술정보원 (KERIS) 선임연구원</h3>
-              <p class="text-sm text-slate-600 mt-1">
-                디지털 교과서 및 지능형 에듀테크 플랫폼 기획 및 정책 연구 수행
-              </p>
+          <!-- 항목 2 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-navy-600 group-hover:scale-125 transition-transform"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">OO학회 학술위원</h3>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full inline-block w-fit mt-1 sm:mt-0">2021.01 - 현재</span>
             </div>
+            <p class="text-slate-600 text-sm">연례 학술대회 프로그램 위원 및 분과 세션 좌장</p>
           </div>
 
-          <!-- Timeline Item 3 -->
-          <div class="relative group">
-            <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-400 ring-4 ring-white shadow"></span>
-            <div>
-              <span class="text-xs font-semibold tracking-wider text-slate-500 uppercase">2016.08</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">서울대학교 대학원 교육공학 박사 (Ph.D.)</h3>
-              <p class="text-sm text-slate-600 mt-1">
-                논문: "적응형 온라인 학습 환경에서 학습자 상호작용 패턴 기반 학업 성취 예측 모형"
-              </p>
+          <!-- 항목 3 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-navy-400 group-hover:scale-125 transition-transform"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">OO대학교 방문연구원 (Visiting Scholar)</h3>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full inline-block w-fit mt-1 sm:mt-0">2016.09 - 2018.01</span>
             </div>
+            <p class="text-slate-600 text-sm">AI 연구소 멀티모달 표현학습 공동 프로젝트 연구 수행</p>
           </div>
 
-          <!-- Timeline Item 4 -->
-          <div class="relative group">
-            <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-400 ring-4 ring-white shadow"></span>
-            <div>
-              <span class="text-xs font-semibold tracking-wider text-slate-500 uppercase">2012.02</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">한국대학교 사범대학 교육학과 학사 (B.A.)</h3>
-              <p class="text-sm text-slate-600 mt-1">
-                수석 졸업 및 교원자격증(중등 2급 정교사) 취득
-              </p>
+          <!-- 항목 4 -->
+          <div class="relative pl-6 sm:pl-8 group">
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-navy-300 group-hover:scale-125 transition-transform"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">OO대학교 대학원 전산학 박사</h3>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full inline-block w-fit mt-1 sm:mt-0">2012.03 - 2016.08</span>
             </div>
+            <p class="text-slate-600 text-sm">지도교수: OOO 교수 / 논문명: 지능형 영상 인식을 위한 딥 피처 표현 기법</p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- Section 5: 연락처 -->
-    <section id="contact" class="scroll-mt-20">
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-3">
-        <div class="p-2 bg-brand-50 text-brand-700 rounded-lg">
-          <i data-lucide="phone" class="w-5 h-5"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">연구실 위치 및 연락처</h2>
+    <!-- 연락처 (Contact) 섹션 -->
+    <section id="contact" class="space-y-6">
+      <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-navy-900 flex items-center gap-3">
+          <span class="w-2 h-7 bg-navy-700 rounded-full inline-block"></span>
+          연락처 및 연구실 위치
+        </h2>
+        <span class="text-xs text-slate-400 font-mono tracking-wider">CONTACT</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Contact Info Card -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-6">
+        
+        <!-- 연락처 카드 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase">연구실 위치 (Office)</p>
+              <p class="text-slate-800 font-medium mt-1">부산광역시 OO구 OO로 123<br>동의대학교 공학1관 405호</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase">연구실 전화 (Phone)</p>
+              <p class="text-slate-800 font-medium mt-1">051-000-0000 <span class="text-xs text-slate-400">(내선 4567)</span></p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-xs text-slate-400 font-semibold uppercase">이메일 (Email)</p>
+              <div class="flex items-center gap-2 mt-1">
+                <span id="prof-email" class="text-slate-800 font-medium">example@deu.ac.kr</span>
+                <button onclick="copyEmail()" class="text-xs px-2.5 py-1 bg-slate-100 hover:bg-navy-50 text-slate-600 hover:text-navy-700 rounded-md border border-slate-200 transition" title="이메일 복사">
+                  <i class="fa-regular fa-copy"></i> 복사
+                </button>
+              </div>
+              <p id="copy-feedback" class="text-xs text-emerald-600 font-medium mt-1 hidden">✓ 이메일이 클립보드에 복사되었습니다.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-700 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-semibold uppercase">오피스 아워 (Office Hours)</p>
+              <p class="text-slate-800 font-medium mt-1">매주 화/목 14:00 - 16:00 (사전 메일 예약 권장)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 지도 안내 및 학생 면담 가이드 -->
+        <div class="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-sm">
           <div class="space-y-4">
-            <h3 class="text-lg font-bold text-slate-900">연구실 안내</h3>
-            <p class="text-sm text-slate-600">
-              학부생 상담, 대학원 입학 문의, 산학협력 연구 제안은 이메일로 사전 일정 조율 후 방문해 주시기 바랍니다.
+            <span class="inline-block px-3 py-1 bg-navy-700 text-navy-200 text-xs font-semibold rounded-full border border-navy-600">STUDENTS & COLLABORATORS</span>
+            <h3 class="text-xl font-bold tracking-tight">연구실 지원 및 면담 안내</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              본 연구실은 인공지능과 컴퓨터 비전 연구에 열정을 가진 <strong>학부 연구생</strong> 및 <strong>석·박사 통합과정 신입생</strong>을 상시 모집하고 있습니다.
             </p>
-
-            <div class="space-y-3 pt-2 text-sm text-slate-700">
-              <div class="flex items-start gap-3">
-                <i data-lucide="map-pin" class="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5"></i>
-                <div>
-                  <strong class="font-medium">연구실:</strong> 한빛대학교 제1캠퍼스 교육관(B동) 502호
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="mail" class="w-5 h-5 text-brand-600 flex-shrink-0"></i>
-                <div>
-                  <strong class="font-medium">이메일:</strong> hnkim@hanbit.ac.kr
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="phone-call" class="w-5 h-5 text-brand-600 flex-shrink-0"></i>
-                <div>
-                  <strong class="font-medium">연구실 번호:</strong> 02-1234-5678
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="clock" class="w-5 h-5 text-brand-600 flex-shrink-0"></i>
-                <div>
-                  <strong class="font-medium">Office Hours:</strong> 수요일 14:00 - 16:00 (사전 예약)
-                </div>
-              </div>
-            </div>
+            <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
+              <li>면담 요청 시 이력서 및 성적증명서를 첨부 바랍니다.</li>
+              <li>연구 관심 분야를 간략히 명시해 주시면 빠른 회신이 가능합니다.</li>
+              <li>외부 기업과의 산학협력 연구 제안도 환영합니다.</li>
+            </ul>
           </div>
 
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs text-slate-500">이메일 주소 복사하기</span>
-            <button 
-              id="copyBtn" 
-              onclick="copyEmail()" 
-              class="inline-flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg transition-colors font-medium cursor-pointer"
-            >
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-              <span id="copyBtnText">이메일 복사</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Large Email CTA Card -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between text-center sm:text-left">
-          <div class="space-y-3">
-            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center mx-auto sm:mx-0">
-              <i data-lucide="send" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900">연구 및 상담 문의</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              연구 참여, 대학원 진학, 강의 및 자문 관련 문의는 메일 클라이언트를 통해 바로 보내실 수 있습니다.
-            </p>
-          </div>
-
-          <div class="pt-6">
-            <a 
-              href="mailto:hnkim@hanbit.ac.kr?subject=%5B%ED%95%9C%EB%B9%9B%EB%8C%80%20%EC%83%81%EB%8B%B4%2F%EB%AC%B8%EC%9D%98%5D%20%EC%84%B1%ED%95%A8" 
-              class="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 bg-brand-700 hover:bg-brand-800 active:scale-[0.99] text-white font-semibold rounded-xl text-base shadow-sm hover:shadow transition-all"
-            >
-              <i data-lucide="mail" class="w-5 h-5"></i>
-              <span>이메일 보내기</span>
+          <div class="pt-6 mt-6 border-t border-navy-800">
+            <a href="mailto:example@deu.ac.kr" class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-navy-700 hover:bg-navy-600 text-white rounded-xl font-medium transition shadow">
+              <i class="fa-solid fa-paper-plane text-sm"></i>
+              <span>교수님께 바로 이메일 보내기</span>
             </a>
-            <p class="text-xs text-slate-500 text-center mt-2.5">클릭 시 기본 이메일 프로그램이 실행됩니다.</p>
           </div>
         </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-brand-900 text-slate-400 py-8 border-t border-slate-800 mt-16">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="space-y-1">
-        <p class="text-sm font-semibold text-slate-200">한빛대학교 사범대학 교육공학과</p>
-        <p class="text-xs text-slate-400">© 2026 Prof. Ha-Neul Kim. All rights reserved.</p>
-      </div>
-      <div class="flex items-center gap-4 text-xs">
-        <a href="#about" class="hover:text-white transition-colors">소개</a>
-        <a href="#research" class="hover:text-white transition-colors">연구</a>
-        <a href="#courses" class="hover:text-white transition-colors">강의</a>
-        <a href="#contact" class="hover:text-white transition-colors">연락처</a>
-      </div>
+  <!-- 푸터 -->
+  <footer class="border-t border-slate-200 bg-white py-8 mt-16 text-center text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto px-4 space-y-2">
+      <p class="font-medium text-slate-600">© 2026 Professor Ha-neul Kim. Intelligent Systems Lab. All Rights Reserved.</p>
+      <p class="text-slate-400">동의대학교 공과대학 컴퓨터공학과 | 연구실: 공학1관 405호</p>
     </div>
   </footer>
 
-  <!-- Simple Interaction Script -->
+  <!-- 자바스크립트 상호작용 (모바일 메뉴 및 클립보드 복사) -->
   <script>
-    // Lucide Icons 초기화
-    lucide.createIcons();
+    // 1. 모바일 햄버거 메뉴 토글
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    // 이메일 복사 기능
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 모바일 메뉴 링크 클릭 시 드롭다운 닫기
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // 2. 이메일 클립보드 복사 기능 (iframe 안전 호환)
     function copyEmail() {
-      const email = "hnkim@hanbit.ac.kr";
-      const dummy = document.createElement("textarea");
-      document.body.appendChild(dummy);
-      dummy.value = email;
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
+      const emailText = document.getElementById('prof-email').innerText;
+      const feedback = document.getElementById('copy-feedback');
 
-      const btnText = document.getElementById("copyBtnText");
-      btnText.textContent = "복사 완료!";
-      setTimeout(() => {
-        btnText.textContent = "이메일 복사";
-      }, 2000);
+      // 임시 텍스트에어리어 생성 후 execCommand 사용
+      const tempInput = document.createElement('textarea');
+      tempInput.value = emailText;
+      tempInput.setAttribute('readonly', '');
+      tempInput.style.position = 'absolute';
+      tempInput.style.left = '-9999px';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          feedback.classList.remove('hidden');
+          setTimeout(() => {
+            feedback.classList.add('hidden');
+          }, 2500);
+        }
+      } catch (err) {
+        console.error('이메일 복사 실패:', err);
+      } finally {
+        document.body.removeChild(tempInput);
+      }
     }
   </script>
 </body>
